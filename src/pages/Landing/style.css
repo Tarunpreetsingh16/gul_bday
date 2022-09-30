@@ -1,11 +1,21 @@
 #landingPage {
     height:100vh;
     width: 100%;
-    background-color: black;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#bdayTitle {
+#leadingBall {
+    height: 8rem;
+    width: 8rem;
+    background-color: black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
+}
+.clickable {
+    font-size: 1rem;
 }

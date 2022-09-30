@@ -1,23 +1,42 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
-import {gsap} from 'gsap';
+import {motion} from 'framer-motion/dist/framer-motion'
 
-function Landing() {
 
-    const bdayTitle = useRef();
+function Landing({updateStep, step}) {
+    const [scaleSize, setScaleSize] = useState(3)
+    const [backgroundColor, setBackgroundColor] = useState('hsl(256, 256, 256)')
+    const [display, setDisplay] = useState('flex')
 
-    useEffect(() => {
-        gsap.fromTo(bdayTitle.current,
-            {opacity: 0, y: -500},
-            {duration: 2, opacity: 1, y: 0, ease: "bounce"})
-    })
+    const scaleUp = () => {
+        setScaleSize(scaleSize + 1.5)
+        if (scaleSize > 7) {
+            setBackgroundColor('hsl(0, 0, 0)')
+            setDisplay('none')
+            updateStep()
+        }
+    }
 
     return (
-        <div id="landingPage">
-            <h1 id="bdayTitle" ref={bdayTitle}>
-                Happy Birthday love!
-            </h1>
-        </div>
+        <motion.div
+            id="landingPage"
+            animate={{backgroundColor, display: step == 1 ? 'flex' : 'none' }}>
+            <motion.div
+                id="leadingBall"    
+                whileHover={{ scale: 1.5 }}
+                whileTap={{ scale: scaleSize }}
+                transition={{ type: "spring", stiffness: 400, damping: 10, duration: 1, times: [0, 0.5, 1] }}
+                animate={{ y: [-1000, 1000, -500, 500, -100, 100, 0], display }}
+                drag="x"
+                onClick={scaleUp}>
+                    <motion.div
+                        className="clickable"
+                        animate={{opacity: [0, 1]}}
+                        transition={{ duration: 3 }}>
+                        Tap me
+                    </motion.div>
+            </motion.div>
+        </motion.div>
     )
 }
 export default Landing;
