@@ -1,7 +1,7 @@
 {
   "main.css": "/gul_bday/static/css/main.f903545a.chunk.css",
-  "main.js": "/gul_bday/static/js/main.2b7d8320.chunk.js",
-  "main.js.map": "/gul_bday/static/js/main.2b7d8320.chunk.js.map",
+  "main.js": "/gul_bday/static/js/main.48a6bafa.chunk.js",
+  "main.js.map": "/gul_bday/static/js/main.48a6bafa.chunk.js.map",
   "static/js/1.2d3efeb7.chunk.js": "/gul_bday/static/js/1.2d3efeb7.chunk.js",
   "static/js/1.2d3efeb7.chunk.js.map": "/gul_bday/static/js/1.2d3efeb7.chunk.js.map",
   "static/js/2.e28374db.chunk.js": "/gul_bday/static/js/2.e28374db.chunk.js",
@@ -10,6 +10,6 @@
   "runtime~main.js.map": "/gul_bday/static/js/runtime~main.025fa9a4.js.map",
   "static/css/main.f903545a.chunk.css.map": "/gul_bday/static/css/main.f903545a.chunk.css.map",
   "index.html": "/gul_bday/index.html",
-  "precache-manifest.336a1e0ca9847dde2835b61f3f3bc129.js": "/gul_bday/precache-manifest.336a1e0ca9847dde2835b61f3f3bc129.js",
+  "precache-manifest.06ddb803a1425820a7f16b76e605a475.js": "/gul_bday/precache-manifest.06ddb803a1425820a7f16b76e605a475.js",
   "service-worker.js": "/gul_bday/service-worker.js"
 }
