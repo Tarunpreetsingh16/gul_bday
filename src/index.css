@@ -23,8 +23,41 @@ code {
     monospace;
 }
 
-@media only screen and (max-width: 600px) {
-  h1 {
-    font-size: 1rem;
+#landingPage {
+  height:100vh;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shapeObjectTitle {
+  width: 60%;
+}
+
+.shapeObject {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shapeObject:hover {
+  cursor: pointer;
+}
+
+.clickable {
+  font-size: 1rem;
+}
+
+.relative {
+  position: relative;
+  overflow: auto
+}
+
+@media only screen and (max-width: 400px) {
+  #desktopSite {
+    display: none;
   }
 }

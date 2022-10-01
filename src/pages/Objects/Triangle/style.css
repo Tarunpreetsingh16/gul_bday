@@ -1,0 +1,17 @@
+#triangle {
+    height: 10rem;
+    width:  10rem;
+    background-color: white;
+}
+
+.bdayGirlPicture {
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: 10/15;
+}
+
+.bdayGirlPictureContainer {
+    padding: 3rem 2rem;
+    box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 1);
+    background-color: white;
+}

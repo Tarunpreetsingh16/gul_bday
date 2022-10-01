@@ -12,8 +12,10 @@ function App() {
 
   return (
     <div>
-      <Landing updateStep={updateStep} step={step}/>
-      <MainObjects updateStep={updateStep} step={step} />
+      <div id="desktopSite">
+        <Landing updateStep={updateStep} step={step}/>
+        <MainObjects updateStep={updateStep} step={step} />
+      </div>
     </div>
   );
 }
