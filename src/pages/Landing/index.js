@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import {motion} from 'framer-motion/dist/framer-motion'
 
@@ -20,7 +20,7 @@ function Landing({updateStep, step}) {
     return (
         <motion.div
             id="landingPage"
-            animate={{backgroundColor, display: step == 1 ? 'flex' : 'none' }}>
+            animate={{backgroundColor, display: step === 2 ? 'flex' : 'none' }}>
             <motion.div
                 id="leadingBall"    
                 whileHover={{ scale: 1.5 }}

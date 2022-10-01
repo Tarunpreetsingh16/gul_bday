@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import {motion} from 'framer-motion/dist/framer-motion'
 import './style.css'
 
-function Triangle() {
+function Square() {
 
     const [bdayGirlVisibility, setBdayGirlVisibility] = useState(false)
-    const [tileWidth, setTileWidth] = useState('10rem')
-    const [tileHeight, setTileHeight] = useState('10rem')
 
     const [windowSize, setWindowSize] = useState(getWindowSize());
+
+    const [isTitleVisible, setIsTitleVisible] = useState(false)
+
+    const [backButtonDisplay, setBackButtonDisplay] = useState('none')
 
     useEffect(() => {
       function handleWindowResize() {
@@ -30,7 +32,7 @@ function Triangle() {
     var currentImage = 0;
        
     const imagesArray = [
-        'images/gul1.jpeg',
+        'images/gul12.jpeg',
         'images/gul2.jpeg',
         'images/gul3.jpeg',
         'images/gul4.jpeg',
@@ -40,51 +42,80 @@ function Triangle() {
         'images/gul8.jpeg',
         'images/gul9.jpeg',
         'images/gul10.jpeg',
-        
+        'images/gul11.jpeg',
+        'images/gul1.jpeg',
     ]
 
-    const [images, setImages] = useState([imagesArray[currentImage]]);
+    const [images, setImages] = useState([]);
+
+
+    useEffect(() => {
+        if (images.length === imagesArray.length - 1) {
+            setTimeout(() => {
+                setBackButtonDisplay('flex')
+            }, 2000)
+        } else if (images.length === 0) {
+            setBackButtonDisplay('none')
+            setBdayGirlVisibility(false)
+        }
+    }, [images.length]);
+
 
     const showBdayGirl = () => {
-        setBdayGirlVisibility(true);
-        setTileHeight('30rem');
-        setTileWidth('30rem')     
+        setBdayGirlVisibility(true); 
         
         const interval = setInterval(() => {
             currentImage++
-            if(currentImage == imagesArray.length) {
+            if(currentImage === imagesArray.length) {
                 clearInterval(interval)
             } else {
                 setImages(images => [...images, imagesArray[currentImage]])
             }
-          }, 3000);
+        }, 3000);
+    }
+
+    const hoverAndTap = {
+        scale: 1.2,
+        boxShadow: "0rem 0rem 10rem rgba(241, 90, 34, 1)",
+        backgroundColor: "rgba(241, 90, 34, 0.1)" ,
+        color: "rgba(256, 256, 256, 1)",
+        transition: { duration: 0.5 }
+    }
+
+    const goBack = () => {
+        var numberOfImagesPopped = 0
+        const interval = setInterval(() => {
+
+            if(numberOfImagesPopped === imagesArray.length) {
+                clearInterval(interval)
+            } else {
+                setImages((images) => {
+                    return images.slice(0, images.length-1)
+                })
+                numberOfImagesPopped++;
+            };
+        }, 500);
     }
 
     return (
         <div>
             <motion.div 
-                id="triangle"
+                id="square"
                 className="shapeObject"
                 animate={{
                     borderRadius: 10,
-                    height: ['0rem', tileHeight],
-                    width: ['0rem', tileWidth],
+                    height: '10rem',
+                    width: '10rem',
                     display: bdayGirlVisibility ? 'none' : 'flex',
                 }}
                 onClick={showBdayGirl}
-                whileHover={{
-                    scale: 1.2,
-                    boxShadow: "0rem 0rem 10rem rgba(241, 90, 34, 1)",
-                    backgroundColor: "rgba(241, 90, 34, 0.1)" ,
-                    color: "rgba(256, 256, 256, 1)",
-                    transition: { duration: 0.5 }
-                }}    
+                whileHover={hoverAndTap}
+                whileTap={hoverAndTap}
+                onMouseEnter={() => setIsTitleVisible(true)}
+                onMouseLeave={() => setIsTitleVisible(false)}
                 >
-                <motion.div className="clickable shapeObjectTitle"
-                    animate={{ opacity: [0, 1] }}
-                    transition={{ type: "spring", stiffness: 100, delay: 5, duration: 1 }}
-                    >
-                    <span>Let's have a look at the birthday girl</span>
+                <motion.div className="clickable shapeObjectTitle">
+                    {isTitleVisible ? <span>Let's have a look at our birthday girl</span> : null}
                 </motion.div>            
             </motion.div>
             {bdayGirlVisibility ? 
@@ -99,14 +130,30 @@ function Triangle() {
                             left: Math.floor(Math.random() * (windowSize.innerWidth - 500) + 0),}}
                             transition = {{ type: "spring", stiffness: 500}}
                             className="bdayGirlPictureContainer">
-                            <img src={image} className="bdayGirlPicture" />
+                            <img src={image} className="bdayGirlPicture" alt={image}/>
                         </motion.div>
                     )
                 })
                 : null
             }
+
+            <motion.div
+                className="backButton"
+                animate={{
+                    display: backButtonDisplay,
+                    position: 'absolute'
+                }}
+                whileHover={{
+                    scale: 1.2
+                }}
+                whileTap={{
+                    scale: 1.1
+                }}
+                onClick={goBack}>
+                Go back
+            </motion.div>
             
         </div>
     )
 }
-export default Triangle;
+export default Square;

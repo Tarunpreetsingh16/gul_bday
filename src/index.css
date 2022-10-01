@@ -30,6 +30,7 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 
 .shapeObjectTitle {
@@ -54,6 +55,23 @@ code {
 .relative {
   position: relative;
   overflow: auto
+}
+
+.backButton {
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background-color: black;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 1);
+  align-self: center;
+}
+
+
+.backButton:hover {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 400px) {
