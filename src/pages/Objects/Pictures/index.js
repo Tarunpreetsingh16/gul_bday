@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {motion} from 'framer-motion/dist/framer-motion'
 import './style.css'
 
-function Square() {
+function Pictures() {
 
     const [bdayGirlVisibility, setBdayGirlVisibility] = useState(false)
 
@@ -71,7 +71,7 @@ function Square() {
             } else {
                 setImages(images => [...images, imagesArray[currentImage]])
             }
-        }, 3000);
+        }, 10);
     }
 
     const hoverAndTap = {
@@ -94,7 +94,7 @@ function Square() {
                 })
                 numberOfImagesPopped++;
             };
-        }, 500);
+        }, 100);
     }
 
     return (
@@ -141,7 +141,9 @@ function Square() {
                 className="backButton"
                 animate={{
                     display: backButtonDisplay,
-                    position: 'absolute'
+                    position: 'absolute',
+                    right : 10,
+                    bottom: 10,
                 }}
                 whileHover={{
                     scale: 1.2
@@ -156,4 +158,4 @@ function Square() {
         </div>
     )
 }
-export default Square;
+export default Pictures;

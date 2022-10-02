@@ -1,20 +1,26 @@
 import React from 'react';
 import {motion} from 'framer-motion/dist/framer-motion'
-import Square from '../Objects/Square';
+import Pictures from '../Objects/Pictures';
+import Videos from '../Objects/Videos';
+import Letter from '../Objects/Letter';
 
 function MainObjects({updateStep, step}) {
     console.log({step})
     return (
         <motion.div 
         id="landingPage"
-        className="relative"
+        className="relative "
         animate={{
-            backgroundColor: 'hsl(0, 0, 0)',
+            // backgroundColor: 'hsl(0, 0, 0)',
             color: 'hsl(256, 256, 256)',
             display: step === 1 ? 'flex' : 'none'}}
         transition={{ type: "spring", stiffness: 100, delay: 1, duration: 3 }}
         >
-            <Square />
+            <div className='row'>
+                <Pictures />
+                {/* <Videos /> */}
+                <Letter />
+            </div>
         </motion.div>
     )
 }

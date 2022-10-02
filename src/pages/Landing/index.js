@@ -32,7 +32,7 @@ function Landing({updateStep, step}) {
                     <motion.div
                         className="clickable"
                         animate={{opacity: [0, 1]}}
-                        transition={{ duration: 3 }}>
+                        transition={{ delay: 1, duration: 3 }}>
                         Tap me
                     </motion.div>
             </motion.div>
