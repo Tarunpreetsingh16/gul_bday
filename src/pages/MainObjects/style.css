@@ -1,1 +1,8 @@
 
+.col {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    min-height: 80vh;
+    justify-content: space-between;
+}

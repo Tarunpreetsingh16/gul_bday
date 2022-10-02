@@ -1,31 +1,21 @@
-/* #square {
-    height: 10rem;
-    width:  10rem;
-    background-color: white
-} */
-
-.bdayGirlPicture {
-    object-fit: cover;
-    width: 100%;
-    aspect-ratio: 10/15;
-}
-
-.bdayGirlPictureContainer {
-    padding: 3rem 2rem;
-    box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 1);
-    background-color: white;
-}
-
 .videosContainer {
-    background-color: red;
+    background-color: black;
     position: absolute;
     width: 100%;
+    min-height: 100vh;
     top: 0;
     left: 0;
     display: flex;
-    justify-content: space-between;
 }
 
-video {
-    width: 20%;
+.outerBorder {
+    width: 33.33%;
+    padding: 2rem;
+    display: flex;
+}
+
+.video {
+    background-color: white;
+    padding: 2rem 1rem;
+    width: 100%;
 }

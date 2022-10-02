@@ -3,6 +3,8 @@ import {motion} from 'framer-motion/dist/framer-motion'
 import Pictures from '../Objects/Pictures';
 import Videos from '../Objects/Videos';
 import Letter from '../Objects/Letter';
+import BirthdayWish from '../Objects/BirthdayWish';
+import './style.css'
 
 function MainObjects({updateStep, step}) {
     console.log({step})
@@ -13,12 +15,15 @@ function MainObjects({updateStep, step}) {
         animate={{
             // backgroundColor: 'hsl(0, 0, 0)',
             color: 'hsl(256, 256, 256)',
-            display: step === 1 ? 'flex' : 'none'}}
+            display: step === 2 ? 'flex' : 'none'}}
         transition={{ type: "spring", stiffness: 100, delay: 1, duration: 3 }}
         >
             <div className='row'>
                 <Pictures />
-                {/* <Videos /> */}
+                <div className='col'>
+                    <Videos />
+                    <BirthdayWish />
+                </div>
                 <Letter />
             </div>
         </motion.div>

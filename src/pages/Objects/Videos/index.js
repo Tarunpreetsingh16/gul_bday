@@ -11,7 +11,8 @@ function Videos() {
     const videosArray = [
         'Videos/bday_girl.mp4',
         'Videos/gul_skip.mp4',
-        'Videos/bday_girl.mp4',
+        'Videos/gul_hoop.mp4',
+        'Videos/gul_dunking.mp4'
     ]
 
 
@@ -49,7 +50,7 @@ function Videos() {
                 onMouseLeave={() => setIsTitleVisible(false)}
                 >
                 <motion.div className="clickable shapeObjectTitle">
-                    {isTitleVisible ? <span>Let's look at our birthday girl doing activities</span> : null}
+                    {isTitleVisible ? <span>Let's look at the bacha in action</span> : null}
                 </motion.div>            
             </motion.div>
             
@@ -57,18 +58,22 @@ function Videos() {
             <div>
                 <div className='videosContainer'>
                         {videosArray.map((video) =>
-                            <video controls loop autoPlay>
-                                <source src={video} type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
+                             <div class='outerBorder'>
+                                <video controls loop autoPlay className='video'>
+                                    <source src={video} type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+
                         )}
-                    
                 </div>
 
                 <motion.div
                     className="backButton"
                     animate={{
-                        position: 'absolute'
+                        position: 'absolute',
+                        right : 10,
+                        bottom: 10,
                     }}
                     whileHover={{
                         scale: 1.2

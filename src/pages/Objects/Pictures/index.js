@@ -71,7 +71,7 @@ function Pictures() {
             } else {
                 setImages(images => [...images, imagesArray[currentImage]])
             }
-        }, 10);
+        }, 2000);
     }
 
     const hoverAndTap = {

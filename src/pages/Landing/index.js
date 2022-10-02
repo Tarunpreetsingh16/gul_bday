@@ -20,7 +20,7 @@ function Landing({updateStep, step}) {
     return (
         <motion.div
             id="landingPage"
-            animate={{backgroundColor, display: step === 2 ? 'flex' : 'none' }}>
+            animate={{backgroundColor, display: step === 1 ? 'flex' : 'none' }}>
             <motion.div
                 id="leadingBall"    
                 whileHover={{ scale: 1.5 }}

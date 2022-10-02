@@ -4,7 +4,7 @@ import './style.css'
 
 function Letter() {
 
-    const [letterVisibility, setLetterVisibility] = useState(true)
+    const [letterVisibility, setLetterVisibility] = useState(false)
 
     const [isTitleVisible, setIsTitleVisible] = useState(false)
 
@@ -30,7 +30,7 @@ function Letter() {
         'how much understanding you are',
         'how much caring you are',
         'we have the same compassion for puppies',
-        'you Gullu Bhai! ❤️'
+        'you! ❤️'
     ]
 
     const hoverAndTap = {
@@ -85,6 +85,7 @@ function Letter() {
                         padding: '3rem 1rem'
                         }}
                         transition= {{ duration: 2 }}
+                        id="letter"
                         >I was so confused what to do for your birthday. I decided to write a letter for you, but 
                         when I started writing it, I realized I need to do something better as you deserve great things in life.
                         I want to write things about us and how my life has changed since we met; however, I do not want to take
