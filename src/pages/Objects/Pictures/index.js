@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {motion} from 'framer-motion/dist/framer-motion'
 import './style.css'
 
-function Pictures() {
+function Pictures({step, updateStep}) {
 
     const [bdayGirlVisibility, setBdayGirlVisibility] = useState(false)
 
@@ -11,6 +11,8 @@ function Pictures() {
     const [isTitleVisible, setIsTitleVisible] = useState(false)
 
     const [backButtonDisplay, setBackButtonDisplay] = useState('none')
+
+    const backButton = useRef(null)
 
     useEffect(() => {
       function handleWindowResize() {
@@ -51,11 +53,10 @@ function Pictures() {
 
     useEffect(() => {
         if (images.length === imagesArray.length - 1) {
-            setTimeout(() => {
-                setBackButtonDisplay('flex')
-            }, 2000)
+            backButton.current.scrollIntoView()
         } else if (images.length === 0) {
             setBackButtonDisplay('none')
+            bdayGirlVisibility && updateStep();
             setBdayGirlVisibility(false)
         }
     }, [images.length]);
@@ -63,6 +64,7 @@ function Pictures() {
 
     const showBdayGirl = () => {
         setBdayGirlVisibility(true); 
+        setBackButtonDisplay('flex')
         
         const interval = setInterval(() => {
             currentImage++
@@ -71,7 +73,7 @@ function Pictures() {
             } else {
                 setImages(images => [...images, imagesArray[currentImage]])
             }
-        }, 2000);
+        }, 3000);
     }
 
     const hoverAndTap = {
@@ -98,6 +100,8 @@ function Pictures() {
     }
 
     return (
+        step === 2 ?
+        
         <div>
             <motion.div 
                 id="square"
@@ -138,6 +142,7 @@ function Pictures() {
             }
 
             <motion.div
+                ref={backButton}
                 className="backButton"
                 animate={{
                     display: backButtonDisplay,
@@ -156,6 +161,7 @@ function Pictures() {
             </motion.div>
             
         </div>
+        :null
     )
 }
 export default Pictures;

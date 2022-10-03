@@ -10,11 +10,18 @@ function App() {
     setStep(step + 1)
   }
 
+  const resetStep = () => {
+    setStep(1)
+  }
+
   return (
     <div>
-      <div id="desktopSite">
+      <div id="mobileSite">
         <Landing updateStep={updateStep} step={step}/>
-        <MainObjects updateStep={updateStep} step={step} />
+        <MainObjects updateStep={updateStep} step={step} resetStep={resetStep}/>
+      </div>
+      <div id="desktopSite">
+        Please open this on a desktop browser
       </div>
     </div>
   );

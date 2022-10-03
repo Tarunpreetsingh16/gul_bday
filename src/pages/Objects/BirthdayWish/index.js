@@ -1,12 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {motion} from 'framer-motion/dist/framer-motion'
 import './style.css'
 
-function BirthdayWish() {
+function BirthdayWish({resetStep, step}) {
 
     const [letterVisibility, setLetterVisibility] = useState(false)
 
     const [isTitleVisible, setIsTitleVisible] = useState(false)
+
+    const [windowSize, setWindowSize] = useState(getWindowSize());
+
+    const backButton = useRef(null)
+
+    useEffect(() => {
+        function handleWindowResize() {
+        setWindowSize(getWindowSize());
+    }
+
+    window.addEventListener('resize', handleWindowResize);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
+
+    function getWindowSize() {
+        const {innerWidth, innerHeight} = window;
+        return {innerWidth, innerHeight};
+    }
+  
+    useEffect(() => {
+        if (!backButton) 
+            backButton.current.scrollIntoView()
+    });
 
     const showBdayGirl = () => {
         setLetterVisibility(true)
@@ -22,9 +47,43 @@ function BirthdayWish() {
 
     const goBack = () => {
         setLetterVisibility(false)
+        resetStep()
+    }
+
+    const balloonsCount = 5
+
+    const balloonsArray = [];
+
+    for(var i=0; i<balloonsCount; i++) {
+        balloonsArray.push(
+            <motion.div
+                key={i}
+                animate={{
+                    zIndex: 999,
+                    position: 'absolute',
+                    y: [`${Math.floor(Math.random() * (windowSize.innerHeight - 500) + 0)}vh`, '-100vh'],
+                    x: [`${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 10)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500)  - 200)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 350)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 250)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 100)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 50)}px`, 
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 150)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) - 100)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 100)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) - 200)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) - 300)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 200)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 800)}px`]}}
+                    transition= {{repeat: Infinity, duration: 15}}
+                >
+                <img src={`images/balloon${i}.png`} alt='balloon' width='30%' />
+            </motion.div>
+        )
     }
 
     return (
+        step === 5 ?
         <div>
             <motion.div 
                 id="square"
@@ -49,18 +108,27 @@ function BirthdayWish() {
             {letterVisibility ?
                 <div >
                     <motion.div animate={{ 
-                        color: 'white',
-                        fontSize: '2rem',
-                        padding: '3rem 1rem'
+                            color: 'white',
+                            fontSize: '2rem',
+                            padding: '3rem 1rem',
+                            opacity: [0,1]
                         }}
-                        transition= {{ duration: 2 }}
+                        transition= {{ delay: 1, duration: 4 }}
                         id="bdayWishContainer"
                         >
                             <img src='images/gullu_bhai.jpg' alt="gullu bhai" />
-                            <h2>Happy Birthday Gullu Bhai!</h2>
+                            <motion.div
+                                    animate={{ 
+                                    top: ['-50%', '50%'] 
+                                }}
+                                transition={{type: "spring", stiffness: 100, damping: 40, delay: 3, duration: 2}}
+                                id='wish'>
+                                Happy Birthday Gullu Bhai! 🎂
+                            </motion.div>
                     </motion.div>
                     <div>
                         <motion.div
+                            ref={backButton}
                             className="backButton"
                             animate={{
                                 position: 'absolute',
@@ -77,12 +145,17 @@ function BirthdayWish() {
                             Go back
                         </motion.div>
                     </div>
+                    {
+                        balloonsArray.map((balloon) => balloon)   
+                    }
+                    
                 </div>
                 : null
             }
 
             
         </div>
+        : null
     )
 }
 export default BirthdayWish;

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {motion} from 'framer-motion/dist/framer-motion'
 import './style.css'
 
-function Letter() {
+function Letter({updateStep, step}) {
 
     const [letterVisibility, setLetterVisibility] = useState(false)
 
@@ -11,25 +11,20 @@ function Letter() {
     const [iLove, setILove] = useState('exploring things with you!')
 
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
-    useEffect(() => {
-        return () => {
-            setILove('exploring things with you!')
-            setCurrentTextIndex(0)
-        }
-    }, [])
+    const backButton = useRef(null)
 
     const showBdayGirl = () => {
         setLetterVisibility(true)
     }
 
     const iLoveArray = [
-        'making fun of you',
-        'how we decide to eat healthy and end up having unhealthy',
-        'enjoy spending time with you',
-        'how you look',
-        'how much understanding you are',
-        'how much caring you are',
-        'we have the same compassion for puppies',
+        'making fun of you 🤓',
+        'how we decide to eat healthy and end up having unhealthy 🌚🌝',
+        'enjoy spending time with you 👩🏻‍🤝‍👨🏽',
+        'how you look 👸🏻',
+        'how much understanding you are 🫱🏼‍🫲🏽',
+        'how much caring you are 🫶🏽',
+        'we have the same compassion for puppies 🐶',
         'you! ❤️'
     ]
 
@@ -43,6 +38,7 @@ function Letter() {
 
     const goBack = () => {
         setLetterVisibility(false)
+        updateStep()
     }
 
     const changeILoveText = () => {
@@ -56,6 +52,7 @@ function Letter() {
     }
 
     return (
+        step === 4 ?
         <div>
             <motion.div 
                 id="square"
@@ -110,6 +107,7 @@ function Letter() {
                     </motion.div>
                     <div>
                         <motion.div
+                            ref={backButton}
                             className="backButton"
                             animate={{
                                 position: 'absolute',
@@ -132,6 +130,7 @@ function Letter() {
 
             
         </div>
+        : null
     )
 }
 export default Letter;

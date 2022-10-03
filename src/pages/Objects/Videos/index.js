@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {motion} from 'framer-motion/dist/framer-motion'
 import './style.css'
 
-function Videos() {
+function Videos({updateStep, step}) {
 
     const [bdayGirlVisibility, setBdayGirlVisibility] = useState(false)
 
     const [isTitleVisible, setIsTitleVisible] = useState(false)
+
+    const backButton = useRef(null)
 
     const videosArray = [
         'Videos/bday_girl.mp4',
@@ -15,6 +17,10 @@ function Videos() {
         'Videos/gul_dunking.mp4'
     ]
 
+    useEffect(() => {
+        if (!backButton) 
+            backButton.current.scrollIntoView()
+    });
 
     const showBdayGirl = () => {
         setBdayGirlVisibility(true)
@@ -30,9 +36,11 @@ function Videos() {
 
     const goBack = () => {
         setBdayGirlVisibility(false)
+        updateStep()
     }
 
     return (
+        step === 3 ?
         <div>
             <motion.div 
                 id="square"
@@ -69,6 +77,7 @@ function Videos() {
                 </div>
 
                 <motion.div
+                    ref={backButton}
                     className="backButton"
                     animate={{
                         position: 'absolute',
@@ -90,6 +99,7 @@ function Videos() {
 
             
         </div>
+        : null
     )
 }
 export default Videos;
