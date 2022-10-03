@@ -7,6 +7,12 @@ import BirthdayWish from '../Objects/BirthdayWish';
 import './style.css'
 
 function MainObjects({updateStep, step, resetStep}) {
+
+    const pauseInstrumental = () => {
+        const instrumentalSong = document.getElementById("instrumentalBdaySong")
+        instrumentalSong.pause()
+    }
+
     return (
         step >= 2 ?
         <motion.div>
@@ -33,14 +39,14 @@ function MainObjects({updateStep, step, resetStep}) {
 
                 <div className='col'>
                     <Videos step={step} updateStep={updateStep} />
-                    <BirthdayWish step={step} resetStep={resetStep} />
+                    <BirthdayWish step={step} resetStep={resetStep} pauseInstrumental={pauseInstrumental}/>
                 </div>
                 <div className='alignRightExtreme'>
                     <Letter step={step} updateStep={updateStep} />
                 </div>
                 </div>
             </motion.div>
-            <audio loop autoPlay>
+            <audio loop autoPlay id="instrumentalBdaySong">
                 <source src='Audio/music_bday.mp3' type='audio/mp3' />
                 Your browser does not support the audio element.
             </audio>

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import {motion} from 'framer-motion/dist/framer-motion'
 import './style.css'
 
-function BirthdayWish({resetStep, step}) {
+function BirthdayWish({resetStep, step, pauseInstrumental}) {
 
     const [letterVisibility, setLetterVisibility] = useState(false)
 
@@ -35,6 +35,7 @@ function BirthdayWish({resetStep, step}) {
 
     const showBdayGirl = () => {
         setLetterVisibility(true)
+        pauseInstrumental()
     }
 
     const hoverAndTap = {
@@ -61,7 +62,8 @@ function BirthdayWish({resetStep, step}) {
                 animate={{
                     zIndex: 999,
                     position: 'absolute',
-                    y: [`${Math.floor(Math.random() * (windowSize.innerHeight - 500) + 0)}vh`, '-100vh'],
+                    bottom: 0,
+                    y: ['0vh', '-100vh'],
                     x: [`${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 10)}px`,
                     `${Math.floor(Math.random() * (windowSize.innerWidth - 500)  - 200)}px`,
                     `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 350)}px`,
@@ -69,13 +71,13 @@ function BirthdayWish({resetStep, step}) {
                     `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 100)}px`,
                     `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 50)}px`, 
                     `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 150)}px`,
-                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) - 100)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) - 50)}px`,
                     `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 100)}px`,
-                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) - 200)}px`,
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) - 100)}px`,
                     `${Math.floor(Math.random() * (windowSize.innerWidth - 500) - 300)}px`,
                     `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 200)}px`,
-                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 800)}px`]}}
-                    transition= {{repeat: Infinity, duration: 15}}
+                    `${Math.floor(Math.random() * (windowSize.innerWidth - 500) + 300)}px`]}}
+                    transition= {{repeat: Infinity, duration: Math.floor(Math.random() * (25 - 5) + 5)}}
                 >
                 <img src={`images/balloon${i}.png`} alt='balloon' width='30%' />
             </motion.div>
@@ -106,14 +108,16 @@ function BirthdayWish({resetStep, step}) {
             </motion.div>
             
             {letterVisibility ?
-                <div >
+                <div>
+                    <div
+                        style={{fontSize: '1rem', position: 'absolute', left: 10, bottom: 100}}>Turn up the volume lol</div>
                     <motion.div animate={{ 
                             color: 'white',
                             fontSize: '2rem',
                             padding: '3rem 1rem',
-                            opacity: [0,1]
+                            opacity: [0,1],
                         }}
-                        transition= {{ delay: 1, duration: 4 }}
+                        transition= {{ delay: 1, duration: 2 }}
                         id="bdayWishContainer"
                         >
                             <img src='images/gullu_bhai.jpg' alt="gullu bhai" />
@@ -126,6 +130,10 @@ function BirthdayWish({resetStep, step}) {
                                 Happy Birthday Gullu Bhai! 🎂
                             </motion.div>
                     </motion.div>
+                    <audio loop autoPlay>
+                        <source src='Audio/bday_song.m4a' type='audio/x-m4a' />
+                        Your browser does not support the audio element.
+                    </audio>
                     <div>
                         <motion.div
                             ref={backButton}

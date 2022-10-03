@@ -73,7 +73,7 @@ function Pictures({step, updateStep}) {
             } else {
                 setImages(images => [...images, imagesArray[currentImage]])
             }
-        }, 3000);
+        }, );
     }
 
     const hoverAndTap = {
